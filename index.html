@@ -5,7 +5,11 @@
     <title>Digital clock</title>
     <script type="text/javascript" src="./js/index.js"></script>
   </head>
-  <body>
-    <time></time>
+  <body onload="startDigitalClock()">
+    <button type="button" id="ctf" onclick="changeTimeFormatAndButtonText()" >change to 12 Hour format </button><br>
+    <p> <span id="time"></span></p>
+   <p><span id ="date"></span></p>
+   <!-- <button type="button" name="time1">24hours</button><br>
+   <button type="button" name="time2">12 hours</button> -->
   </body>
 </html>
