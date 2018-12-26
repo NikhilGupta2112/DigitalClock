@@ -1,3 +1,4 @@
+// demo comment for understanding bug fixing and gi working
 var format24Hrs = true;
 var previousDate = '';
 function startDigitalClock() {
