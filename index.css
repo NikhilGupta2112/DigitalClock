@@ -1,0 +1,23 @@
+body {
+  background-color: turquoise;
+}
+p {
+    align-text: center;
+    margin: auto;
+  color: red;
+
+  margin-left: 40px;
+}
+
+h1 {
+  color: maroon;
+  margin-left: 40px;
+}
+
+button {
+  color: red;
+}
+
+.formatbuttonlook {
+  border-radius: 50px;
+}

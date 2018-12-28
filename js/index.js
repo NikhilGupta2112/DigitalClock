@@ -1,6 +1,8 @@
 // demo comment for understanding bug fixing and gi working
-var format24Hrs = true;
+ var format24Hrs = true;
 var previousDate = '';
+var shdatechecker = true;
+var shsecondchecker = true;
 function startDigitalClock() {
   startTimmerToExecute();
 }
@@ -31,6 +33,7 @@ function showCurrentDate(date){
   var yy = date.getFullYear();
   var dateString = `${dy}, ${dd} ${mm} ${yy}`;
   printDataInDom("date", dateString);
+  return dateString;
 }
 
 function dayName(dy){
@@ -64,19 +67,45 @@ function formatTime(date) {
   var min=date.getMinutes();
   var sec=date.getSeconds();
   var formattedString =(("0" + h).slice(-2)) +" : " + (("0" +min).slice(-2)) +" : " +(("0" + sec).slice(-2))   + ampmSuffix;
-
+  // var formattedStringesecon
+   if (shsecondchecker===true)
   return formattedString;
+   else return
 }
 
-function changeButtonText(a) {
-  document.getElementById("ctf").innerText=a;
+function changeButtonText(id,a) {
+  document.getElementById(id).innerText=a;
 }
 
 function changeTimeFormatAndButtonText() {
     format24Hrs=!format24Hrs;
     if(format24Hrs===false)
-      changeButtonText("change to 24 hour format");
+      changeButtonText("ctf","change to 24 hour format");
     else {
-      changeButtonText("change to 12 hour format");
+      changeButtonText("ctf","change to 12 hour format");
     }
+}
+
+function hideSecondAndButtonText()  {
+  var date = new Date();
+  var ss;
+  shsecondchecker=!shsecondchecker;
+  if(shsecondchecker===false) {
+  }
+}
+
+function hideDateAndButtonText(src) {
+  var dateElement = document.getElementById("date");
+  var buttonText = '';
+  if (src.innerText == "Hide Date") {
+     // button text is hide and date is displayed on screen
+     // Hence hide date and change text in button to show dateString
+     buttonText = 'Show Date';
+     dateElement.style.display = "none";
+  }
+  else {
+    buttonText = 'Hide Date';
+    dateElement.style.display = "block";
+  }
+  changeButtonText("ctf1", buttonText);
 }

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <link rel="stylesheet" href="./index.css">
     <meta charset="utf-8">
     <title>Digital clock</title>
     <script type="text/javascript" src="./js/index.js"></script>
-    <!-- Add a css file for beautification -->
   </head>
   <body onload="startDigitalClock()">
-    <button type="button" id="ctf" onclick="changeTimeFormatAndButtonText()" >change to 12 Hour format </button><br>
+    <button type="button" id="ctf" class= "formatbuttonlook" onclick="changeTimeFormatAndButtonText()" >change to 12 Hour format </button>
+    <button type="button" id="ctf1" onclick="hideDateAndButtonText(this)">Hide Date </button>
+    <button type="button" id="ctf2" onclick="hideSecondAndButtonText()">Hide Seconds </button>
     <p> <span id="time"></span></p>
    <p><span id ="date"></span></p>
    <!-- <button type="button" name="time1">24hours</button><br>
