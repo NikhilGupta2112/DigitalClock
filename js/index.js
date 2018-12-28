@@ -1,8 +1,10 @@
 // demo comment for understanding bug fixing and gi working
- var format24Hrs = true;
-var previousDate = '';
-var shdatechecker = true;
-var shsecondchecker = true;
+var data = {
+  format24Hrs:  true,
+  previousDate: '',
+  hideSeconds:  false
+};
+
 function startDigitalClock() {
   startTimmerToExecute();
 }
@@ -11,8 +13,8 @@ function showCurrentDateAndTime() {
   var date = new Date();
   showCurrentTime(date);
   var currentDate = date.toDateString();
-  if (previousDate !== currentDate) {
-    previousDate = currentDate;
+  if (data.previousDate !== currentDate) {
+    data.previousDate = currentDate;
     showCurrentDate(date);
   }
 }
@@ -58,7 +60,7 @@ function formatTime(date) {
   var h = date.getHours();
   var ampmSuffix = '';
 
-  if (format24Hrs === false) {
+  if (data.format24Hrs === false) {
     if (h < 12) ampmSuffix=' am';
     else ampmSuffix=' pm';
     if (h < 24 && h > 12||h===0) h = Math.abs(h-12);
@@ -66,11 +68,16 @@ function formatTime(date) {
 
   var min=date.getMinutes();
   var sec=date.getSeconds();
-  var formattedString =(("0" + h).slice(-2)) +" : " + (("0" +min).slice(-2)) +" : " +(("0" + sec).slice(-2))   + ampmSuffix;
-  // var formattedStringesecon
-   if (shsecondchecker===true)
+
+  // second's part of formatted string have to be saved in another variable secElement
+  // when hideSeconds is true, set secElement to blank.
+  // use the secElement in formatted string as it is, because its value has to be taken care of.
+  var secElement = " : " + ("0" + sec).slice(-2);
+  if (data.hideSeconds === true) secElement = "";
+
+  var formattedString =(("0" + h).slice(-2)) +" : " + (("0" +min).slice(-2)) + secElement + ampmSuffix;
+
   return formattedString;
-   else return
 }
 
 function changeButtonText(id,a) {
@@ -78,20 +85,26 @@ function changeButtonText(id,a) {
 }
 
 function changeTimeFormatAndButtonText() {
-    format24Hrs=!format24Hrs;
-    if(format24Hrs===false)
+    data.format24Hrs = !data.format24Hrs;
+
+    if (!data.format24Hrs)
       changeButtonText("ctf","change to 24 hour format");
-    else {
+    else
       changeButtonText("ctf","change to 12 hour format");
-    }
 }
 
 function hideSecondAndButtonText()  {
-  var date = new Date();
-  var ss;
-  shsecondchecker=!shsecondchecker;
-  if(shsecondchecker===false) {
-  }
+    if (data.hideSeconds) {
+      // hideSeconds = true implies button text is "Show seconds" and date string "does not show" seconds
+      // hence set hideSeconds to false and change text in button to "Hide seconds"
+       changeButtonText("ctf2","Hide Seconds");
+    }
+    else {
+      // hideSeconds = false implies button text is "Hide second" and date string "shows" seconds
+      // hence set hideSeconds to true and change text in button to "Show seconds"
+       changeButtonText("ctf2","Show Seconds");
+    }
+    data.hideSeconds = !data.hideSeconds;
 }
 
 function hideDateAndButtonText(src) {
